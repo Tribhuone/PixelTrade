@@ -16,7 +16,7 @@ const CartPriceBox = () => {
 
     const handlePayment = async () => {
         const token = authorize.token;
-        const stripe = await loadStripe(import.meta.env.STRIPE_LOAD);
+        const stripe = await loadStripe(import.meta.env.VITE_STRIPE_LOAD);
         try{
             const data = await axios.post(`${import.meta.env.VITE_ORDER_SERVICE_URL}/api/order/payment-checkout` ,
                 cartItem,
