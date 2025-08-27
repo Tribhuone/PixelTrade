@@ -1,0 +1,126 @@
+
+@import "tailwindcss";
+
+body {
+  font-family: "Belleza", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(32, 123, 32);
+}
+
+body::-webkit-scrollbar{
+  display: none;
+}
+
+.cart-Tag{
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+}
+
+/* This font used on used dhashboard */
+.new-Font{
+  font-family: "Libertinus Serif", serif;
+  font-style: normal;
+}
+
+/* ___________ Nav bar ________ */
+
+.nav-bar{
+  box-shadow: 0 0 5px gray;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* _________ Img Card ________ */
+
+.all-Img-Cards{
+  border-top: 1px solid rgb(221, 221, 221);
+}
+
+.img-card{
+  border-radius: 1.1rem;
+  transition: all .3s ease-in-out 0s;
+}
+
+.img-card:hover{
+  transform: scale(1.006 , 1.006);
+} 
+
+.img-card:hover .add-cart-btn{
+  background-color: rgb(255, 228, 91);
+}
+
+.img-card:hover .title{
+  text-decoration: underline;
+}
+
+.uploaded-pixel{
+  object-fit:contain;
+  height: fit-content;
+}
+
+/* _________ Photo Upload Page _________ */
+
+.upload-Box{
+  border-radius: 60%;
+}
+
+.pic-input-elm{
+  border: 1px solid gray;
+  border-radius: .4rem;
+}
+
+.input-id{
+  color: black;
+}
+
+/* _________ Image Page _________ */
+
+.image-box{
+  box-shadow: 3px 3px 20px rgba(126, 126, 126, 0.87);
+  border-radius: 0.5rem;
+}
+
+.photo-card{
+  object-fit: contain;
+}
+
+/* _______ User Icon */
+
+.my-List{
+  list-style-type: none;
+}
+
+/* ___________ Cart __________ */
+.cart-Image{
+  object-fit: contain;
+}
+
+/* __________ Otp-Container __________ */
+.otp-input-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* ____________ User-Dashboard ____________ */
+.toggle-btn-{
+  background-color: inherit;
+  color: green;
+  cursor:pointer;
+  width: 50%;
+  padding: 0 .5rem 0 .5rem;
+  border-radius: .5rem;
+  transition: all .3s ease-in-out 0s;
+}
+
+.toggle-btn-active{
+  width: 50%;
+  cursor:pointer;
+  background-color: white;
+  color: black;
+  padding: 0 .5rem 0 .5rem;
+  transition: all .3s ease-in-out 0s;
+  border-radius: .5rem;
+}

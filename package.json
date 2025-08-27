@@ -1,0 +1,14 @@
+{
+  "name": "pixel-trade",
+  "version": "1.0.0",
+  "scripts": {
+    "install-all": "npm install --prefix orderService && npm install --prefix productService && npm install --prefix userService && npm install --prefix client",
+    "dev": "concurrently \"npm run dev --prefix orderService\" \"npm run dev --prefix productService\" \"npm run dev --prefix userService\" \"npm start --prefix client\""
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  },
+  "author": "Tribhuwan",
+  "license": "ISC",
+  "description": ""
+}
