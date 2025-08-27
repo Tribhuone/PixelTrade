@@ -16,7 +16,7 @@ const ResetPassword = () => {
 
     const handleResetPassword = async (evt) => {
         evt.preventDefault();
-        await axios.put(`${import.meta.env.VITE_API_URL}password/reset/${token}`, 
+        await axios.put(`${import.meta.env.VITE_API_URL}/password/reset/${token}`, 
         { password : pass , confirmPassword : confirmPass }, 
         {
             withCredentials : true,
