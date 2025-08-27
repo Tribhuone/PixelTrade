@@ -13,7 +13,7 @@ const Home = () => {
     const [items, setItems] = useState([]);
 
     useEffect( () => {
-        axios.get(`${import.meta.env.REACT_APP_PRODUCT_SERVICE_URL}/api/product`)
+        axios.get(`${import.meta.env.VITE_PRODUCT_SERVICE_URL}/api/product`)
         .then( (res) => {
             setItems(res.data);
         })
