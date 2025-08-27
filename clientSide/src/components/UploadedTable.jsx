@@ -16,7 +16,7 @@ export default function ProductTable() {
 
   useEffect(  () => {
     const getUserProduct = async () => {
-      await axios.get(`${import.meta.env.REACT_APP_PRODUCT_SERVICE_URL}/api/product/uploaded` , {
+      await axios.get(`${import.meta.env.VITE_PRODUCT_SERVICE_URL}/api/product/uploaded` , {
         headers: {
           Authorization : `Bearer ${token}`,
         }
