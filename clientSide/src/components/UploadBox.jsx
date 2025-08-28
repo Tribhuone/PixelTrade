@@ -69,9 +69,9 @@ const UploadBox = ( { imgPreview } ) => {
                     {/* Preview Image */}
                     {imgPreview && (
                         <img 
-                        src={imgPreview} 
-                        alt="preview" 
-                        className="mt-3 rounded-md max-h-[150px] sm:max-h-[200px] object-contain" 
+                            src={imgPreview} 
+                            alt="preview" 
+                            className="mt-3 rounded-md max-h-[90px] sm:max-h-[120px] object-contain" 
                         />
                     )}
                 </div>
