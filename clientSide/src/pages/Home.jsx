@@ -16,7 +16,6 @@ const Home = () => {
         axios.get(`${import.meta.env.VITE_PRODUCT_SERVICE_URL}/api/product`)
         .then( (res) => {
             setItems(res.data);
-            console.log(res);
         })
         .catch( (er) => {
             console.log(er.response.message);
