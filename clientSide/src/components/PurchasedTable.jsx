@@ -7,7 +7,7 @@ import axios from 'axios';
 export default function PurchasedTable() {
   const [products, setProducts] = useState([]);
   const authorize = useSelector( (state) => state.user);
-  const token = authorize.token;        // access the token
+  let token = authorize.token;        // access the token
 
   useEffect( () => {
 
