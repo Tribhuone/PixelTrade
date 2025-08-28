@@ -43,7 +43,6 @@ const UploadAll = () => {
                     }
                 });
                 dispatch(resetAllValues());
-                setTimeout(window.location.reload(), 3000);
             })
             .catch( (err) => {
                 toast(err.response.data.message,{
