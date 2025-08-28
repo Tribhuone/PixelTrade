@@ -46,7 +46,7 @@ const storage = multer.diskStorage({
     },
     // Here give file name...
     filename : function(req, file, cb){
-        cb(null, `${Date.now()}-${file.originalname}`);
+        cb(null, `${file.originalname}`);
     }
 })
 // Here we pass the storage object used to be in "upload" middleware ...
