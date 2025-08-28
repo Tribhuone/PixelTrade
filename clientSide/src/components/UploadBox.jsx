@@ -29,7 +29,7 @@ const UploadBox = ( { imgPreview } ) => {
     return (
         <div className="p-3 border-1 border-gray-300 rounded-lg mx-auto my-8 
                 w-[95%] sm:w-[80%] md:w-[60%] lg:w-[70%] max-sm:h-[40dvh]
-                h-[50vh] lg:h-[40dvh]  md:h-[60vh] duration-300 ease-in-out">
+                h-[62vh] lg:h-[40dvh]  md:h-[60vh] duration-300 ease-in-out">
 
             <div className="border-1 border-dashed rounded-lg p-2 border-gray-300 
                             flex justify-center items-center w-full h-full">
