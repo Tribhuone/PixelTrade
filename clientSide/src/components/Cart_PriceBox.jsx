@@ -15,7 +15,7 @@ const CartPriceBox = () => {
     }, 0);      // Here 0 is initial value of accumulator...
 
     const handlePayment = async () => {
-        const token = authorize.token;
+        let token = authorize.token;
         const stripe = await loadStripe(import.meta.env.VITE_STRIPE_LOAD);
         try{
             const data = await axios.post(`${import.meta.env.VITE_ORDER_SERVICE_URL}/api/order/payment-checkout` ,
