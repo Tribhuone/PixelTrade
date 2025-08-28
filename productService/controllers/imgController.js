@@ -12,7 +12,7 @@ const getImgData = catchAsyncError( async (req,res,next) => {
         const dataWithPaths = imageData.map(img => {
             return {
                 ...img._doc,
-                imagePath: `http://localhost:8079/${img.path}`
+                imagePath: `${process.env.PRODUCT_SERVICE_URL}/${img.path}`
             };
         });
 
