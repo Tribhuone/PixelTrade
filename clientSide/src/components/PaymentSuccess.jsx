@@ -14,7 +14,7 @@ const PaymentSuccess = () => {
 
     useEffect( () => {
         const dataStore = async () => {
-            const token = authorize.token;
+            let token = authorize.token;
             await axios.post(`${import.meta.env.VITE_ORDER_SERVICE_URL}/api/order/ordered-products` ,
                 products , 
                 {
