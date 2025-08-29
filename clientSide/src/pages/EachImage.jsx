@@ -51,7 +51,7 @@ const EachImage = () => {
                         p-2 image-box bg-gray-200 rounded-xl"
                     >
                         <img
-                        src={item.imagePath}
+                        src={item.path}
                         alt={item.title}
                         className="w-full h-full object-contain photo-card"
                         />

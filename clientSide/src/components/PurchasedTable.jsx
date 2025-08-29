@@ -71,7 +71,7 @@ export default function PurchasedTable() {
               <tr key={item._id} className="border-t hover:bg-gray-50">
                 <td className="p-3">
                   <img
-                    src={item.imagePath}
+                    src={item.path}
                     alt={item.title}
                     className="w-16 h-16 object-cover rounded"
                   />

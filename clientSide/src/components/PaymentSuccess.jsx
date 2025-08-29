@@ -39,7 +39,7 @@ const PaymentSuccess = () => {
     return (
         <>
             <Navbar/>
-            <h1>Your Payment Successfully Completed!</h1>
+                <h1 className="text-lg font-semibold " >Your Payment Successfully Completed!</h1>
             <Footer/>
         </>
     );

@@ -72,7 +72,7 @@ export default function ProductTable() {
 
                 <td className="py-4 flex items-center gap-4">
                   <img
-                    src={product.imagePath}
+                    src={product.path}
                     alt={product.title}
                     className="w-16 h-12 rounded object-cover"
                   />
@@ -111,7 +111,7 @@ export default function ProductTable() {
           >
             <div className="flex items-center gap-4">
               <img
-                src={product.imagePath}
+                src={product.path}
                 alt={product.title}
                 className="w-20 h-16 rounded object-cover"
               />

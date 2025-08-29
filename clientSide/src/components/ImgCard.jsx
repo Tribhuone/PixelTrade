@@ -62,7 +62,7 @@ const ImageCard = ({ items }) => {
                         {/* Image */}
                         <div className="w-full bg-gray-200 img-box h-[31dvh] rounded-tl-xl rounded-tr-xl overflow-hidden">
                             <img
-                                src={item.imagePath}
+                                src={item.path}
                                 alt={item.title}
                                 className="w-full h-full object-cover"
                                 id="picture"

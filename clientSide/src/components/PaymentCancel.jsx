@@ -4,7 +4,7 @@
 const PaymentCancel = () => {
     return (
         <div>
-            <h1>Your Payment has been canceled!</h1>
+            <h1 className="text-lg font-semibold" >Your Payment has been canceled!</h1>
         </div>
     );
 }

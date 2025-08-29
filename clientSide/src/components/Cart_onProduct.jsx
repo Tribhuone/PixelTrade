@@ -34,7 +34,7 @@ const ProductCart = ( { cartItem } ) => {
                             {/* Image */}
                             <div className="w-[6rem] h-[5rem] flex-shrink-0">
                                 <img
-                                    src={item.imagePath}
+                                    src={item.path}
                                     alt={item.title}
                                     className="w-full h-full rounded-lg object-cover"
                                 />
