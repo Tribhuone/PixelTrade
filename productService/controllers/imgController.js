@@ -70,7 +70,10 @@ const getSingleImg = catchAsyncError( async (req,res,next) => {
 const getUserProduct = catchAsyncError( async (req, res, next) => {
     try{
         const user_Id = req.user._id;
-        const userProduct = await Photo.find({ userId : user_Id });
+        const userProduct = await Photo.find({ userId : user_Id })
+            .select("title path price")
+            .limit(4) // only first 4
+            .lean();
 
         return res.status(200).json({
                 success : true,
@@ -95,7 +98,7 @@ const deletePost = catchAsyncError( async (req, res , next) => {
     } 
     catch (error) {
         res.json({
-            message : error,
+            message : error.message,
         });
     }
 });
