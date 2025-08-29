@@ -26,18 +26,10 @@ const uploadImg = catchAsyncError( async (req, res, next ) => {
             userName : userName,
         });
 
-        image.save()
-        .then( () => {
-            res.json({
-                success: true,
-                message: "Image Uploaded",
-            });
-        })
-        .catch( (er) => {
-            res.json({
-                success: false,
-                message: er.message,
-            });
+        await image.save();
+        return res.json({
+          success: true,
+          message: "Image Uploaded",
         });
     }
     catch(er){
@@ -52,7 +44,10 @@ const uploadImg = catchAsyncError( async (req, res, next ) => {
 const getImgData = catchAsyncError( async (req,res,next) => {
 try{
         // get All data...
-        const imageData = await Photo.find();
+        const imageData = await Photo.find()
+            .select("title path price userName")
+            .limit(4) // only first 4
+            .lean();
 
         res.json( imageData );
     }
