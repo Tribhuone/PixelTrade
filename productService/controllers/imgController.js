@@ -59,8 +59,8 @@ try{
 // get single Image route ...
 const getSingleImg = catchAsyncError( async (req,res,next) => {
     try{
-        const { id } = req.params;
-        console.log(id);
+        const id = req.params.id;
+
         // find image by ID on DB...
         const photo = await Photo.findById(id);
 
