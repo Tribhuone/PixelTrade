@@ -44,8 +44,7 @@ const ImageCard = ({ items }) => {
         else{
             <Link to={`/img/${item._id}`} />
             dispatch(updateImgId(item._id));
-            dispatch(updateImgPath(item.path));
-            navigate(`/img/${item._id}`, { state : item } );
+            navigate(`/img/${item._id}`);
         }
     }
 
