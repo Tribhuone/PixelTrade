@@ -3,12 +3,9 @@ import "../App.css";
 import { useDispatch , useSelector } from 'react-redux';
 import { Link , useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
-
 import { updateCart } from "../features/Cart/cartSlice.js";
-import { updateImgId , updateImgPath } from "../features/Form/formSlice.js";
 
 const ImageCard = ({ items }) => {
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const cartItems = useSelector( (state) => state.cart);
@@ -43,7 +40,6 @@ const ImageCard = ({ items }) => {
         }
         else{
             <Link to={`/img/${item._id}`} />
-            dispatch(updateImgId(item._id));
             navigate(`/img/${item._id}`);
         }
     }
