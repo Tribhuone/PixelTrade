@@ -40,8 +40,6 @@ export const formSlice = createSlice({
             state.price = "";
             state.imgFile = "";
             state.imgPreview = "";
-            state.imgId = "";
-            state.imgPath = "";
         }
     },
 });
