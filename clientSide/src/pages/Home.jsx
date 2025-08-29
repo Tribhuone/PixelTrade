@@ -29,7 +29,8 @@ const Home = () => {
                 <Navbar/>
                 <main className=" flex-grow p-4 max-sm:px-0">
                     <Hero/>
-                    <div className="flex justify-evenly items-center flex-wrap xl:px-20 2xl:px-20 md: max-sm:px-0 all-Img-Cards drop-shadow-md" >
+                    <div className="flex justify-evenly items-center flex-wrap xl:px-20 2xl:px-20 md: max-sm:px-0 all-Img-Cards drop-shadow-md
+                            xl:grid grid-cols-4 xl:gap-2 2xl:grid grid-cols-4 2xl:gap2" >
                         <ImageCard items={items}/>
                     </div>
                 </main>
