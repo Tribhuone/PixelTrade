@@ -18,7 +18,6 @@ export const userSlice = createSlice({
         updateUser: (state , action) => {
             state.user = action.payload.user;
             state.token = action.payload.token;
-            console.log(state.token);
         },
 
         logoutUser: (state) => {
