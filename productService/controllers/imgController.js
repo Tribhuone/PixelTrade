@@ -60,6 +60,7 @@ try{
 const getSingleImg = catchAsyncError( async (req,res,next) => {
     try{
         const { id } = req.params;
+        console.log(id);
         // find image by ID on DB...
         const photo = await Photo.findById(id);
 
