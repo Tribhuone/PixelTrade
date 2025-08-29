@@ -45,7 +45,6 @@ const orderData = async (req, res) => {
             _id, 
             id, 
             description, 
-            path,
             keywords,
             uploadAt,
             userId,
@@ -80,7 +79,10 @@ const orderData = async (req, res) => {
 const getPurchasedItem = async (req, res) => {
     try{
         const user_Id = req.user._id;
-        const userProduct = await Order.find({ purchasedBy : user_Id });
+        const userProduct = await Order.find({ purchasedBy : user_Id })
+                    .select("title path price artistName")
+                    .limit(4)
+                    .lean();
 
         return res.status(200).json({
             success : true,
