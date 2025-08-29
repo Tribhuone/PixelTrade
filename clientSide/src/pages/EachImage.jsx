@@ -1,6 +1,8 @@
 
 import "../App.css";
-import { useLocation } from "react-router";
+import axios from "axios";  
+import { useParams } from "react-router";
+import { useEffect , useState } from 'react';
 import { useDispatch , useSelector } from "react-redux";
 import Navbar from './../components/Navbar';
 import Footer from './../components/Footer';
@@ -9,10 +11,28 @@ import { updateCart } from "../features/Cart/cartSlice.js";
 
 const EachImage = () => {
 
-    const location = useLocation();
-    const item = location.state;            // Here we get the item data from imgCard component...
-    const dispatch = useDispatch();
+    const [item , setItem] = useState(null);
     const cartItems = useSelector( (state) => state.cart);      // get the cart details...
+    const dispatch = useDispatch();
+    const { id } = useParams();
+
+    // function to get the data from database...
+    useEffect( () => {
+        const getSingleImgData = async () => {  
+            await axios.get(`${import.meta.env.VITE_PRODUCT_SERVICE_URL}/img/:id`)
+                .then ( (res) => {
+                    setItem(res.data.photo);
+                    console.log(res.data);
+                })
+                .catch( (er) => {
+                    console.log(er.response.data.message);
+                })
+        }
+
+        getSingleImgData();
+    }, [id]);
+
+    if (!item) return <p>Loading...</p>;
 
     const keyword = item.keywords[0];
 
@@ -51,9 +71,9 @@ const EachImage = () => {
                         p-2 image-box bg-gray-200 rounded-xl"
                     >
                         <img
-                        src={item.path}
-                        alt={item.title}
-                        className="w-full h-full object-contain photo-card"
+                            src={item.path}
+                            alt={item.title}
+                            className="w-full h-full object-contain photo-card"
                         />
                     </div>
 
@@ -90,17 +110,17 @@ const EachImage = () => {
 
                         {/* Keywords */}
                         <div className="flex flex-wrap gap-2 mt-2">
-                        {keyword.split(",").map((word, index) => (
-                            <p
-                            key={index}
-                            className="text-xs sm:text-sm md:text-md bg-gray-200/80 rounded-xl px-3 py-1"
-                            >
-                            {word}
-                            </p>
-                        ))}
+                            {keyword.split(",").map((word, index) => (
+                                <p
+                                    key={index}
+                                    className="text-xs sm:text-sm md:text-md bg-gray-200/80 rounded-xl px-3 py-1"
+                                >
+                                    {word}
+                                </p>
+                            ))}
                         </div>
                     </div>
-                    </main>
+                </main>
 
                 {/* Footer (always bottom) */}
                 <Footer />
