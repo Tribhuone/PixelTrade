@@ -27,7 +27,11 @@ const paymentGateway = async (req, res , next ) => {
 
         res.json( { id: session.id } );
     } catch (error) {
-        res.status(500).json("Internal server Error" , error);
+        res.status(500).json({
+          success: false,
+          message: "Internal server error",
+          error: error.message
+        });
     }
 }
 
@@ -57,11 +61,11 @@ const orderData = async (req, res) => {
         });
         
         // Save all orders in parallel
-        await Order.insertMany(orderedProduct);
+        await Order.insertMany(orderedProduct, { ordered: false });
 
         res.json({
-        success: true,
-        message: "Orders are saved!",
+            success: true,
+            message: "Orders are saved!",
         });
     }
     catch(err){
@@ -84,7 +88,12 @@ const getPurchasedItem = async (req, res) => {
         });
     }
     catch(err){
-        res.status(500).json({message: err});
+        res.status(500).json({
+          success: false,
+          message: "Internal server error",
+          error: error.message
+        });
+;
     }
 }
 
