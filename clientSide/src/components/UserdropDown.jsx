@@ -60,7 +60,7 @@ const UserdropDown = () => {
     return (
         <>
             <div 
-                className="absolute top-[3rem] right-[2.4rem] py-2 text-green-800/80 
+                className="absolute top-[3rem] right-[2.4rem] py-2 text-green-800/80 w-[9rem]
                     rounded-lg duration-300 ease-in-out drop-shadow-md bg-white "
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
