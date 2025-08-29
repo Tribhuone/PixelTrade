@@ -8,8 +8,6 @@ const initialState = {
         price: "",
         imgFile: "",
         imgPreview: "",
-        imgId: "",
-        imgPath: "",
 }
 
 // Here we create slice to upload file then export it to use on other files...
@@ -35,14 +33,6 @@ export const formSlice = createSlice({
             state.imgPreview = action.payload.imgPreview || "";
         },
 
-        updateImgId: (state, action) => {
-            state.imgId = action.payload;
-        },
-
-        updateImgPath: (state, action) => {
-            state.imgPath = action.payload;
-        },
-
         resetAllValues : (state) => {
             state.title = "";
             state.description = "";
@@ -58,6 +48,6 @@ export const formSlice = createSlice({
 
 
 // Here Redux toolkit automatically generate action creators for each reducer function...
-export const { updateField , addKeywords , removeKeywords , updateImageFile , updateImgId , updateImgPath , resetAllValues } = formSlice.actions;
+export const { updateField , addKeywords , removeKeywords , updateImageFile , resetAllValues } = formSlice.actions;
 
 export default formSlice.reducer;
