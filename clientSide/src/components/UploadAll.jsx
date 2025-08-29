@@ -54,7 +54,7 @@ const UploadAll = () => {
                 });
             })
         } catch (err) {
-            console.log(err.message);
+            console.log(err.data.message);
         }
     }
 
