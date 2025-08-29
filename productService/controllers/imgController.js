@@ -45,7 +45,7 @@ const getImgData = catchAsyncError( async (req,res,next) => {
 try{
         // get All data...
         const imageData = await Photo.find()
-            .select("title path price userName")
+            .select("_id title path price userName")
             .limit(4) // only first 4
             .lean();
 
