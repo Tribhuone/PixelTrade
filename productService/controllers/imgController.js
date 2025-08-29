@@ -60,9 +60,23 @@ try{
 const getSingleImg = catchAsyncError( async (req,res,next) => {
     try{
         const { id } = req.params;
+        // find image by ID on DB...
+        const photo = await Photo.findById(id);
+
+        if (!photo) {
+        return res.status(404).json({
+            success: false,
+            message: "Image not found",
+        });
+        }
+
+        res.status(200).json({
+            success: true,
+            photo, // send full object (title, description, keywords, price, userName, etc.)
+        });
     }
     catch(er){
-        res.status(500).json({message: er});
+        res.status(500).json({message: er.message});
     }
 });
 
