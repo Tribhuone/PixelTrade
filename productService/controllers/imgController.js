@@ -34,6 +34,7 @@ const uploadImg = catchAsyncError( async (req, res, next ) => {
             });
         })
         .catch( (er) => {
+            console.log(er);
             res.json({
                 success: false,
                 message: er.message,
@@ -41,7 +42,6 @@ const uploadImg = catchAsyncError( async (req, res, next ) => {
         });
     }
     catch(er){
-        console.log(er);
         return res.status(500).json({
             success: false,
             message: er.message,
