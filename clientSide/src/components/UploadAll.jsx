@@ -18,6 +18,7 @@ const UploadAll = () => {
         evt.preventDefault();
 
         const token = authorize.token;        // access the token
+        console.log(token);
 
         // set all data on FormData
         const formData = new FormData();
