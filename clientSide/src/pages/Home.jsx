@@ -16,7 +16,6 @@ const Home = () => {
         axios.get(`${import.meta.env.VITE_PRODUCT_SERVICE_URL}/api/product`)
         .then( (res) => {
             setItems(res.data);
-            console.log(res.data);
         })
         .catch( (er) => {
             console.log(er.response.message);
@@ -29,8 +28,7 @@ const Home = () => {
                 <Navbar/>
                 <main className=" flex-grow p-4 max-sm:px-0">
                     <Hero/>
-                    <div className="flex justify-evenly items-center flex-wrap xl:px-20 2xl:px-20 md: max-sm:px-0 all-Img-Cards drop-shadow-md
-                            xl:grid grid-cols-4 xl:gap-2 2xl:grid grid-cols-4 2xl:gap2" >
+                    <div className="flex justify-evenly items-center flex-wrap xl:px-20 2xl:px-20 md: max-sm:px-0 all-Img-Cards drop-shadow-md" >
                         <ImageCard items={items}/>
                     </div>
                 </main>
