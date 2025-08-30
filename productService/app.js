@@ -17,7 +17,7 @@ databaseConnection();
 
 // add midleware (cors) to connect with frontend...
 app.use(cors({
-    origin: process.env.FRONTEND_URL || "*",  // your frontend origin
+    origin: "https://pixel-trade.vercel.app" || "*",  // your frontend origin
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true
 }));
