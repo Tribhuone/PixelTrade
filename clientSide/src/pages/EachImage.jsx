@@ -35,8 +35,6 @@ const EachImage = () => {
         setLoading(false);
     }, [id]);
 
-    if (!item) return <p>Loading...</p>;
-
     const keyword = item.keywords[0];
 
     const addToCart = () => {
