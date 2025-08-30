@@ -65,6 +65,7 @@ const getSingleImg = catchAsyncError( async (req,res,next) => {
         res.status(200).json(resData);          // send full object (title, description, keywords, price, userName, etc.)
     }
     catch(er){
+        console.log(er);
         res.status(500).json({message: er.message});
     }
 });
