@@ -78,6 +78,7 @@ const getSingleImg = catchAsyncError( async (req,res,next) => {
         });
     }
     catch(er){
+        console.log(er);
         res.status(500).json({message: er.message});
     }
 });
