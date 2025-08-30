@@ -25,7 +25,7 @@ const EachImage = () => {
         const getSingleImgData = async () => {  
             setLoading(true);
             try {
-                const res = await axios.get(`${import.meta.env.VITE_PRODUCT_SERVICE_URL}/img/${id}`);
+                const res = await axios.get(`${import.meta.env.VITE_PRODUCT_SERVICE_URL}/api/product/img/${id}`);
                 setItem(res.data);
                 setKeyword(res.data.keywords?.[0] || "");
             } catch (er) {
