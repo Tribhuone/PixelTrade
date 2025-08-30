@@ -12,7 +12,7 @@ import { updateCart } from "../features/Cart/cartSlice.js";
 const EachImage = () => {
 
     const [item , setItem] = useState(null);
-    const [loading , setLoading] = useState(false);
+    const [loading , setLoading] = useState(true);
     const cartItems = useSelector( (state) => state.cart);      // get the cart details...
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -22,17 +22,17 @@ const EachImage = () => {
         const getSingleImgData = async () => {  
             await axios.get(`${import.meta.env.VITE_PRODUCT_SERVICE_URL}/img/:id`)
                 .then ( (res) => {
-                    setLoading(true);
+                    setLoading(false);
                     setItem(res.data.photo);
                     console.log(res.data);
                 })
                 .catch( (er) => {
                     console.log(er.response.data.message);
+                    setLoading(true);
                 })
         }
 
         getSingleImgData();
-        setLoading(false);
     }, [id]);
 
     const keyword = item.keywords[0];
