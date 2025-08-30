@@ -20,7 +20,7 @@ const EachImage = () => {
     // function to get the data from database...
     useEffect( () => {
         const getSingleImgData = async () => {  
-            await axios.get(`${import.meta.env.VITE_PRODUCT_SERVICE_URL}/img/:id`)
+            await axios.get(`${import.meta.env.VITE_PRODUCT_SERVICE_URL}/api/product/img/:id`)
                 .then ( (res) => {
                     setLoading(false);
                     setItem(res.data.photo);
