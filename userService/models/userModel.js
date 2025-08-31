@@ -2,6 +2,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
 
 // Schema of database ...
 const userSchema = new mongoose.Schema({
@@ -24,7 +25,7 @@ const userSchema = new mongoose.Schema({
 
     password: {
         type: String,
-        maxLength: [8, "Password mut have atleast 8 characters"],
+        maxLength: [8, "Password mut have at least 8 characters"],
         required: true,
         select: false,                  // used to hide from client-side...
     }, 
@@ -44,11 +45,7 @@ const userSchema = new mongoose.Schema({
 
     resetPasswordExpire : Date,
 
-    createdAt: {
-        type: Date,
-        default: Date.now(),
-    },
-});
+}, { timestamps: true });
 
 
 // convert password into hash form to store on database...
@@ -96,7 +93,7 @@ userSchema.methods.generateToken = async function(){
 
 
 // function to reset token ...
-userSchema.methods.generateRestPasswordToken = function(){
+userSchema.methods.generateResetPasswordToken = function(){
     const resetToken = crypto.randomBytes(20).toString("hex");
     this.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
 
