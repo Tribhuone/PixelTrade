@@ -63,7 +63,7 @@ const register = catchAsyncError(async (req,res,next) => {
             ]
         });
 
-        if(registrationAttemptsByUser >= 3){
+        if(registrationAttemptsByUser.length >= 3){
             return next(new ErrorHandler("You have exceeded the maximum number of attempts (3), Please try again after 5 minutes!", 400));
         }
 
@@ -106,7 +106,7 @@ const sendVerificationCode = async (verificationMethod, verificationCode, email,
 
             // Using the twilio, we send messages to verified phone number...
             const message = await client.messages.create({
-                body: `Hello from Alwa-Jalwa, Your OTP is ${verifyCodeSpace}`,
+                body: `Hello from PIXEL-TRADE Team, Your OTP is ${verifyCodeSpace}`,
                 from: process.env.TWILIO_PHONE,
                 to: phone,
             });
@@ -146,7 +146,7 @@ function generateEmailTemplate(verificationCode){
                     ${verificationCode}
                 </span>
             </div>
-            <p style="font-size:16px; color: #333" >Please use this code to verify your email address. The code will expire in 10 minutes.</p>
+            <p style="font-size:16px; color: #333" >Please use this code to verify your email address. The code will expire in 5 minutes.</p>
             <p style="font-size:16px; color: #333" >If you did not request this, please ignore this email.</p>
 
             <footer style="margin-top:20px; text-align:center; font-size:14px; color:#999" >
@@ -167,9 +167,9 @@ const verifyOTP = catchAsyncError( async (req, res, next) => {
     const { email,  otp , phone} = req.body;           // get the users data
     const newPhone = `+91${phone}`;
     // First we have to verify the users phone number...
-    const validatePhone = (phone) => {
+    const validatePhone = (phoneNum) => {
         const phoneRegex = /^\+91\d{10}$/ ;           // here we apply Regex validation for India numbers...
-        return phoneRegex.test(phone);
+        return phoneRegex.test(phoneNum);
     }
 
     if(!validatePhone(newPhone)){
@@ -181,7 +181,7 @@ const verifyOTP = catchAsyncError( async (req, res, next) => {
         const userAllEntries = await User.find({
             $or: [
                 { email , accountVerified: false},
-                { phone , accountVerified: false},
+                { newPhone , accountVerified: false},
             ], 
         })
         .sort({ createdAt : -1 });        // sort method used to sort the users data decending order based on users latest entries in DB...
@@ -309,7 +309,7 @@ const forgotPassword = catchAsyncError( async (req, res, next) => {
     }
 
     // Here we generate new token to reset that...
-    const resetTokn = user.generateRestPasswordToken();
+    const resetTokn = user.generateResetPasswordToken();
     await user.save({ validateBeforeSave : false });
     const resetPasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${resetTokn}`;
     const message = `Your reset Password Token is : \n\n ${resetPasswordUrl} \n\n . If you have not request this email, then please ignore it`;
@@ -333,10 +333,10 @@ const forgotPassword = catchAsyncError( async (req, res, next) => {
 // ________________________________ Reset Password ___________________
 const resetPassword = catchAsyncError( async (req,res, next) => {
     const { token } = req.params;
-    const resetPasswordTokn = crypto.createHash("sha256").update(token).digest("hex");
+    const resetPasswordToken = crypto.createHash("sha256").update(token).digest("hex");
 
     const user = await User.findOne({
-        resetPasswordTokn,
+        resetPasswordToken,
         resetPasswordExpire : { $gt : Date.now() },
     });
     if(!user){
