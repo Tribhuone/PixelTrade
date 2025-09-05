@@ -31,7 +31,7 @@ export default function PurchasedTable() {
   // ✅ Download function
   const handleDownload = async (item) => {
     try {
-      const response = await fetch(item.imagePath, {
+      const response = await fetch(item.path, {
         headers: {
           Authorization: `Bearer ${token}`, // if your backend protects the file
         },
