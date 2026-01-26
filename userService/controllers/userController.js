@@ -358,5 +358,39 @@ const resetPassword = catchAsyncError( async (req,res, next) => {
 
 });
 
-module.exports = { register , verifyOTP , userLogin , userLogOut , getUser , forgotPassword , resetPassword};
+//   Update profile ...
+const updateUserProfile = catchAsyncError(async (req, res, next) => {
+    const { name, email, phone } = req.body;
+
+    const updatedData = {};
+
+    if (name) updatedData.name = name;
+    if (email) updatedData.email = email;
+    if (phone) updatedData.phone = phone;
+
+    const user = await User.findOneAndUpdate(
+        {
+            email : email , 
+            accountVerified: true
+        },
+        updatedData,
+        {
+            new: true,          // return updated document
+            runValidators: true // apply schema validation
+        }
+    );
+
+    if (!user) {
+        return next(new ErrorHandler("User not found", 404));
+    }
+
+    res.status(200).json({
+        success: true,
+        message: "Profile updated successfully",
+        user
+    });
+});
+
+
+module.exports = { register , verifyOTP , userLogin , userLogOut , getUser , forgotPassword , resetPassword , updateUserProfile};
 
