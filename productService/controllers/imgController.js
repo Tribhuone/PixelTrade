@@ -46,7 +46,7 @@ try{
         // get All data...
         const imageData = await Photo.find()
             .select("_id title path price userName")
-            .limit(4) // only first 4
+            .limit(5) // only first 4
             .lean();
 
         res.json( imageData );
