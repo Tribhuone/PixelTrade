@@ -1,31 +1,29 @@
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const Order = require("../models/orderModel.js");
+
+import Razorpay from "razorpay";
+
+const razorpay = new Razorpay({
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
 
 const paymentGateway = async (req, res , next ) => {
     try {
         const products = req.body;
-        // Convert cart items to Stripe line_items
-        const lineItems = products.map((item) => ({
-            price_data: {
-                currency: "inr",
-                product_data: {
-                name: item.title,
-                },
-                unit_amount: item.price * 100, // Stripe uses paise, so multiply by 100
-            },
-            quantity: 1,
-        }));
 
-        const session = await stripe.checkout.sessions.create({
-            payment_method_types: ["card"],          // type of payment methods
-            line_items: lineItems,
-            mode: "payment",
-            success_url: `${process.env.FRONTEND_URL}/success`,
-            cancel_url: `${process.env.FRONTEND_URL}/cancel`,
+        const totalAmount = products.reduce(
+            (sum, item) => sum + item.price,
+            0
+        );
+        const order = await razorpay.orders.create({
+            amount: totalAmount * 100, // rupees → paise
+            currency: "INR",
+            receipt: "pixeltrade_" + Date.now(),
         });
 
-        res.json( { id: session.id } );
+        res.json(order);
+
     } catch (error) {
         res.status(500).json({
           success: false,
