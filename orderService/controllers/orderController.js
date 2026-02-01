@@ -1,7 +1,7 @@
 
 const Order = require("../models/orderModel.js");
 
-import Razorpay from "razorpay";
+const Razorpay = require("razorpay");
 
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
