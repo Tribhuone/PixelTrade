@@ -37,12 +37,7 @@ const orderSchema = new mongoose.Schema({
             type : String,
             required : true,
         },
-
-        purchsedAt : {
-            type : Date,
-            defualt : Date.now(),
-        }
-});
+}, { timestamps: true });
 
 const Order = mongoose.model("order" , orderSchema);
 module.exports = Order;
