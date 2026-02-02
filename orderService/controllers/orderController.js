@@ -84,7 +84,6 @@ const getPurchasedItem = async (req, res) => {
         }
 
         const user_Id = req.user._id;
-        console.log(req.user._id);
 
         const userProduct = await Order.find({ purchasedBy: user_Id })
             .select("title path price artistName")
