@@ -18,7 +18,7 @@ databaseConnection();
 
 // add midleware (cors) to connect with frontend...
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || "*",
+  origin: "*",
   credentials: true,
   methods: ["GET", "POST", "DELETE", "PUT"],
 };
