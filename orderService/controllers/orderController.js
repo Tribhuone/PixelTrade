@@ -75,26 +75,36 @@ const orderData = async (req, res) => {
 }
 
 const getPurchasedItem = async (req, res) => {
-    try{
+    try {
+        if (!req.user) {
+            return res.status(401).json({
+                success: false,
+                message: "Unauthorized"
+            });
+        }
+
         const user_Id = req.user._id;
-        const userProduct = await Order.find({ purchasedBy : user_Id })
-                    .select("title path price artistName")
-                    .limit(4)
-                    .lean();
+        console.log(req.user._id);
+
+        const userProduct = await Order.find({ purchasedBy: user_Id })
+            .select("title path price artistName")
+            .sort({ createdAt: -1 })
+            .limit(4)
+            .lean();
 
         return res.status(200).json({
-            success : true,
-            userProduct : userProduct,
+            success: true,
+            userProduct
         });
-    }
-    catch(err){
-        res.status(500).json({
-          success: false,
-          message: "Internal server error",
-          error: error.message
-        });
-;
-    }
-}
 
+    } catch (err) {
+        console.log("Purchased Error:", err);
+
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: err.message
+        });
+    }
+};
 module.exports = { paymentGateway , orderData , getPurchasedItem };
