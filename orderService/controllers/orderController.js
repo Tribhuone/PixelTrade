@@ -37,7 +37,7 @@ const orderData = async (req, res) => {
   try {
     let orderedProducts = req.body;
     const purchasedUser = req.user._id.toString();
-    console.log(orderedProducts);
+
     let orderedProduct = orderedProducts.map(({
       _id,
       id,
@@ -54,8 +54,6 @@ const orderData = async (req, res) => {
       purchasedBy: purchasedUser,
     }));
 
-    console.log("Saving Orders:", orderedProduct);
-
     await Order.insertMany(orderedProduct); // no ordered:false
 
     res.json({
@@ -64,7 +62,6 @@ const orderData = async (req, res) => {
     });
 
   } catch (err) {
-    console.log("Order Save Error:", err);
 
     res.status(500).json({
       success: false,
