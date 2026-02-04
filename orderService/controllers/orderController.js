@@ -34,45 +34,45 @@ const paymentGateway = async (req, res , next ) => {
 }
 
 const orderData = async (req, res) => {
-    try{
-        let orderedProducts = req.body;
-        const purchasedUser = req.user._id;
+  try {
+    let orderedProducts = req.body;
+    const purchasedUser = req.user._id.toString();
 
-        // remove `_id` (or `id`) , description, keywords, fileName field from each object
-        let orderedProduct = orderedProducts.map(({ 
-            _id, 
-            id, 
-            description, 
-            keywords,
-            uploadAt,
-            userId,
-            userName,
-            ...rest 
-        }) => {
-            return {
-                ...rest,
-                artistId : userId,
-                artistName : userName,
-                purchasedBy : purchasedUser,
-            }
-        });
-        
-        // Save all orders in parallel
-        await Order.insertMany(orderedProduct, { ordered: false });
-        console.log("Orders are saved");
-        res.json({
-            success: true,
-            message: "Orders are saved!",
-        });
-    }
-    catch(err){
-        res.status(500).json({
-            success: false,
-            message: "Internal server error",
-            error: err.message,
-        });
-    }
-}
+    let orderedProduct = orderedProducts.map(({
+      _id,
+      id,
+      description,
+      keywords,
+      uploadAt,
+      userId,
+      userName,
+      ...rest
+    }) => ({
+      ...rest,
+      artistId: userId,
+      artistName: userName,
+      purchasedBy: purchasedUser,
+    }));
+
+    console.log("Saving Orders:", orderedProduct);
+
+    await Order.insertMany(orderedProduct); // no ordered:false
+
+    res.json({
+      success: true,
+      message: "Orders are saved!",
+    });
+
+  } catch (err) {
+    console.log("Order Save Error:", err);
+
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: err.message,
+    });
+  }
+};
 
 const getPurchasedItem = async (req, res) => {
     try {
