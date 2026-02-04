@@ -59,7 +59,7 @@ const orderData = async (req, res) => {
         
         // Save all orders in parallel
         await Order.insertMany(orderedProduct, { ordered: false });
-
+        console.log("Orders are saved");
         res.json({
             success: true,
             message: "Orders are saved!",
