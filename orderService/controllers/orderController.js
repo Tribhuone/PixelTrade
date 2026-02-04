@@ -37,7 +37,7 @@ const orderData = async (req, res) => {
   try {
     let orderedProducts = req.body;
     const purchasedUser = req.user._id.toString();
-
+    console.log(orderedProducts);
     let orderedProduct = orderedProducts.map(({
       _id,
       id,
